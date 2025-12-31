@@ -51,7 +51,7 @@ jobs:
           git config user.name "${{ secrets.GIT_USER_NAME }}"
           git add last_trigger.txt
           git commit -m "Update last_trigger.txt with latest trigger timestamp [skip ci]" || echo "No changes to commit [skip ci]"
-          git remote set-url origin https://techroy23:${{ secrets.GH_PAT }}@github.com/techroy23/Docker-PacketSDK.git
+          git remote set-url origin https://manhnv56:${{ secrets.GH_PAT }}@github.com/manhnv56/dockerpacket.git
           git push origin main
 
       - name: Build and push image to GHCR & Docker Hub
@@ -61,5 +61,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/docker-packetsdk:latest
-            docker.io/techroy23/docker-packetsdk:latest
+            ghcr.io/${{ github.repository_owner }}/dockerpacket:latest
+            docker.io/manhnv56/dockerpacket:latest
