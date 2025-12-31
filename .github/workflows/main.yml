@@ -41,19 +41,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Update last_trigger.txt
-        run: |
-          echo "$(date '+%Y-%m-%d %H:%M:%S %Z')" > last_trigger.txt
-
-      - name: Commit last_trigger.txt
-        run: |
-          git config user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git config user.name "${{ secrets.GIT_USER_NAME }}"
-          git add last_trigger.txt
-          git commit -m "Update last_trigger.txt with latest trigger timestamp [skip ci]" || echo "No changes to commit [skip ci]"
-          git remote set-url origin https://manhnv56:${{ secrets.GH_PAT }}@github.com/manhnv56/dockerpacket.git
-          git push origin main
-
       - name: Build and push image to GHCR & Docker Hub
         uses: docker/build-push-action@v6
         with:
